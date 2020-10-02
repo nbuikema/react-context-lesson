@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -14,8 +14,11 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import './header.styles.scss';
 
-const Header = ({ hidden }) => {
+import { CartContext } from '../../providers/cart/cart.provider';
+
+const Header = () => {
   const currentUser = useContext(CurrentUserContext);
+  const { hidden } = useContext(CartContext);
 
   return (
     <div className='header'>
