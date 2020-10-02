@@ -21,7 +21,7 @@ class App extends React.Component {
     this.state = {
       currentUser: null
     };
-  };
+  }
 
   unsubscribeFromAuth = null;
 
@@ -31,14 +31,16 @@ class App extends React.Component {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          this.setState({ currentUser: {
-            id: snapShot.id,
-            ...snapShot.data()
-          } });
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
         });
-      } else {
-        this.setState({ currentUser: userAuth });
       }
+
+      this.setState({ currentUser: userAuth });
     });
   }
 
@@ -49,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <CurrentUserContext.Provider value={ this.state.currentUser }>
+        <CurrentUserContext.Provider value={this.state.currentUser}>
           <Header />
         </CurrentUserContext.Provider>
         <Switch>
@@ -71,6 +73,6 @@ class App extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default App;
